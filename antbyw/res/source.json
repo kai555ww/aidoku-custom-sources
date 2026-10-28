@@ -1,0 +1,11 @@
+{
+	"info": {
+		"id": "zh.antbyw.custom",
+		"name": "蚂蚁搬运网 · 自制",
+		"version": 1,
+		"url": "https://www.antbyw.com",
+		"contentRating": 2,
+		"languages": ["zh"],
+		"minAppVersion": "0.7.1"
+	}
+}

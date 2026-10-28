@@ -1,0 +1,6 @@
+**/target/
+**/package.aix
+.DS_Store
+.env
+.env.*
+*.log

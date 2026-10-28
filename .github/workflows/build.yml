@@ -1,0 +1,53 @@
+name: Build Aidoku source list
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'antbyw/**'
+      - 'jcomic/**'
+      - 'build_on_mac.sh'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: source-list
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: '1.99.0'
+          targets: wasm32-unknown-unknown
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.cargo/bin/aidoku
+            antbyw/target
+            jcomic/target
+          key: aidoku-cli-ae6485e-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install official packaging tool
+        run: |
+          if ! command -v aidoku >/dev/null; then
+            cargo install --locked --git https://github.com/Aidoku/aidoku-rs --rev ae6485e3c14ecd1fd5497d170eae884c68d04a87 aidoku-cli
+          fi
+      - name: Build and verify both sources
+        run: bash build_on_mac.sh
+      - name: Publish source index and packages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update built Aidoku sources'
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aidoku-sources
+          path: public/

@@ -1,0 +1,20 @@
+[package]
+name = "aidoku_antbyw"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+aidoku = { git = "https://github.com/Aidoku/aidoku-rs.git", rev = "ae6485e3c14ecd1fd5497d170eae884c68d04a87" }
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
+strip = true
+lto = true
+
+[dev-dependencies]
+aidoku-test = { git = "https://github.com/Aidoku/aidoku-rs.git", rev = "ae6485e3c14ecd1fd5497d170eae884c68d04a87" }
+aidoku = { git = "https://github.com/Aidoku/aidoku-rs.git", rev = "ae6485e3c14ecd1fd5497d170eae884c68d04a87", features = ["test"] }

@@ -1,0 +1,31 @@
+{
+  "name": "个人漫画图源",
+  "sources": [
+    {
+      "id": "zh.antbyw.custom",
+      "name": "蚂蚁搬运网 · 自制",
+      "version": 1,
+      "iconURL": "icons/zh.antbyw.custom-v1.png",
+      "downloadURL": "sources/zh.antbyw.custom-v1.aix",
+      "languages": [
+        "zh"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://www.antbyw.com",
+      "minAppVersion": "0.7.1"
+    },
+    {
+      "id": "zh.jcomic.custom",
+      "name": "JComic · 自制",
+      "version": 1,
+      "iconURL": "icons/zh.jcomic.custom-v1.png",
+      "downloadURL": "sources/zh.jcomic.custom-v1.aix",
+      "languages": [
+        "zh"
+      ],
+      "contentRating": 2,
+      "baseURL": "https://jcomic.net",
+      "minAppVersion": "0.7.1"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+[target.wasm32-unknown-unknown]
+runner = "aidoku-test-runner"
